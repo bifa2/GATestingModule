@@ -13,7 +13,7 @@ jobs:
           NUGET_KEY: ${{ secrets.NUGET_KEY }}
         shell: pwsh
         run: |
-          echo $pwd.path
+          echo "The current path is: $($pwd.path)"
           Get-ChildItem -Recurse | Select-Object -Expand FullName
           #Publish-Module -Path "GATestingModule/GATestingModule.psd1" -NuGetApiKey $env:NUGET_KEY -Verbose
 
