@@ -5,6 +5,8 @@ on:
       - "main"
 
 jobs:
+  build-module:
+
   publish-to-gallery:
     runs-on: ubuntu-latest
     steps:
@@ -15,7 +17,13 @@ jobs:
         shell: pwsh
         run: |
           echo "The current path is: $($pwd.path)"
-          Get-ChildItem -Recurse | Select-Object -Expand FullName
-          Publish-Module -Path "./Source/" -NuGetApiKey $env:NUGET_KEY -Verbose
+          echo "Building..."
+          ./build.ps1 -Path /${{ github.event.repository.name }}
+          echo ""
+          echo "Listing files:"
+          Get-ChildItem -Recurse
+          echo ""
+          echo "Publishing..."
+          Publish-Module -Path "./${{ github.event.repository.name }}/" -NuGetApiKey $env:NUGET_KEY -Verbose
 
 #Publish-Module -Path /tmp/samplemodule -NuGetApiKey $env:NUGET_KEY -Verbose
