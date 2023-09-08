@@ -15,7 +15,7 @@ jobs:
         shell: pwsh
         run: |
           echo "The current path is: $($pwd.path)"
-          #Get-ChildItem -Recurse | Select-Object -Expand FullName
-          Publish-Module -Path "./GATestingModule/" -NuGetApiKey $env:NUGET_KEY -Verbose
+          Get-ChildItem -Recurse | Select-Object -Expand FullName
+          Publish-Module -Path "./Source/" -NuGetApiKey $env:NUGET_KEY -Verbose
 
 #Publish-Module -Path /tmp/samplemodule -NuGetApiKey $env:NUGET_KEY -Verbose
